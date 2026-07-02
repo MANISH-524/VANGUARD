@@ -1,0 +1,24 @@
+title: LOLBin Proxy Execution
+id: b2000008-0000-4000-a000-vanguard0014
+status: stable
+description: Detects signed OS binaries used to proxy execution of attacker code (rundll32, mshta, regsvr32, msiexec, installutil) — living-off-the-land defense evasion.
+author: Vanguard-OOB
+level: high
+logsource:
+  product: vanguard
+  service: sentry_agent
+detection:
+  selection:
+    event_type: lolbin
+  binaries:
+    details.binary|contains:
+      - 'rundll32'
+      - 'mshta'
+      - 'regsvr32'
+      - 'msiexec'
+      - 'installutil'
+      - 'wmic'
+  condition: selection and binaries
+tags:
+  - attack.defense_evasion
+  - attack.t1218

@@ -1,0 +1,8 @@
+# Vanguard-OOB :: Host Control Plane — pinned dependencies
+flask==3.1.3
+requests==2.33.1
+psutil==7.2.2
+# Recommended: enables AES-256-GCM on the secure telemetry channel.
+# If omitted, the channel falls back to a stdlib-only HMAC-AEAD (still
+# authenticated + encrypted), so the controller works without it.
+cryptography>=42.0.0

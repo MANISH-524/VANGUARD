@@ -1,0 +1,16 @@
+title: Bulk Exfiltration to Cloud Storage
+id: b2000005-0000-4000-a000-vanguard0011
+status: stable
+description: Detects large outbound transfers to cloud storage / file-sharing endpoints (rclone, MEGA, Dropbox, S3, transfer.sh) characteristic of double-extortion data theft.
+author: Vanguard-OOB
+level: high
+logsource:
+  product: vanguard
+  service: sentry_agent
+detection:
+  selection:
+    event_type: cloud_exfil
+  condition: selection
+tags:
+  - attack.exfiltration
+  - attack.t1567.002

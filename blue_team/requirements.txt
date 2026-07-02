@@ -1,0 +1,5 @@
+# Vanguard-OOB :: Blue Team Detection Suite — dependencies
+psutil>=5.9.0
+flask>=3.0.0
+requests>=2.31.0
+pyyaml>=6.0

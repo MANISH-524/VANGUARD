@@ -1,0 +1,22 @@
+title: Persistence Mechanism Established
+id: b2000009-0000-4000-a000-vanguard0015
+status: stable
+description: Detects creation of common persistence footholds — scheduled tasks/cron, WMI event subscriptions, or new privileged accounts.
+author: Vanguard-OOB
+level: high
+logsource:
+  product: vanguard
+  service: sentry_agent
+detection:
+  selection:
+    event_type: persistence
+    details.reason:
+      - scheduled_task
+      - wmi_subscription
+      - new_account
+  condition: selection
+tags:
+  - attack.persistence
+  - attack.t1053
+  - attack.t1546.003
+  - attack.t1136

@@ -1,0 +1,15 @@
+title: Backup / Shadow Copy Destruction
+id: a1f0c4e2-1b3d-4e5f-9a01-vanguard0002
+status: stable
+description: Detects deletion of backups or volume shadow copies to inhibit recovery.
+author: Vanguard-OOB
+level: critical
+logsource:
+  product: vanguard
+detection:
+  selection:
+    event_type: shadow
+  condition: selection
+tags:
+  - attack.impact
+  - attack.t1490

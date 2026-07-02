@@ -1,0 +1,24 @@
+title: Encoded / Obfuscated PowerShell Execution
+id: b2000002-0000-4000-a000-vanguard0008
+status: stable
+description: Detects PowerShell launched with encoded/obfuscated commands (-enc, -EncodedCommand, FromBase64String, IEX download-cradle) commonly used for fileless in-memory payloads.
+author: Vanguard-OOB
+level: high
+logsource:
+  product: vanguard
+  service: sentry_agent
+detection:
+  selection:
+    event_type: powershell
+  cmdline_enc:
+    details.cmdline|contains:
+      - ' -enc '
+      - '-encodedcommand'
+      - 'frombase64string'
+      - 'iex(new-object'
+      - 'downloadstring'
+  condition: selection and cmdline_enc
+tags:
+  - attack.execution
+  - attack.t1059.001
+  - attack.t1027

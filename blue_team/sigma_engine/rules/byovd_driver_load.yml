@@ -1,0 +1,24 @@
+title: Vulnerable Driver Load (BYOVD)
+id: b2000003-0000-4000-a000-vanguard0009
+status: experimental
+description: Detects loading of a known-abusable signed driver (Bring Your Own Vulnerable Driver) used to gain kernel execution and kill EDR from below the OS.
+author: Vanguard-OOB
+level: critical
+logsource:
+  product: vanguard
+  service: sentry_agent
+detection:
+  selection:
+    event_type: driver_load
+  known_bad:
+    details.driver_name|contains:
+      - 'rtcore64'
+      - 'gdrv'
+      - 'dbutil'
+      - 'procexp'
+      - 'aswarpot'
+      - 'kprocesshacker'
+  condition: selection and known_bad
+tags:
+  - attack.privilege_escalation
+  - attack.t1068

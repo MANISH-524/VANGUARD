@@ -1,0 +1,22 @@
+title: C2 Beacon Over Non-Standard Port
+id: a1f0c4e2-1b3d-4e5f-9a01-vanguard0005
+status: experimental
+description: Outbound connection from a non-browser process to a known C2 / reverse-shell port.
+author: Vanguard-OOB
+level: medium
+logsource:
+  product: vanguard
+detection:
+  selection:
+    event_type: network
+  hot_ports:
+    details.dest_port:
+      - 4444
+      - 1337
+      - 6666
+      - 9001
+      - 31337
+  condition: selection and hot_ports
+tags:
+  - attack.command_and_control
+  - attack.t1571

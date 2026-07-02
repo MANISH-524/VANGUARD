@@ -1,0 +1,33 @@
+[Unit]
+Description=Vanguard-OOB Sentry Agent (Guest Production VM)
+Documentation=https://github.com/yourorg/vanguard-oob
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/vanguard-oob/guest_production_vm
+# Shared master secret (hex) — MUST match the controller's. Distribute securely
+# (config management / secrets store). Keep mode 0600.
+EnvironmentFile=-/etc/vanguard-oob/master.env
+ExecStart=/usr/bin/python3 /opt/vanguard-oob/guest_production_vm/sentry_agent.py \
+    --controller-host 192.168.20.1 \
+    --controller-port 9999 \
+    --target-dir /home \
+    --entropy-threshold 7.2 \
+    --poll-interval 2.0
+
+Restart=always
+RestartSec=3
+StandardOutput=null
+StandardError=null
+SyslogIdentifier=vanguard-sentry
+
+# Run silently — no TTY, no journal spam, no visibility to attacker
+KillMode=process
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target

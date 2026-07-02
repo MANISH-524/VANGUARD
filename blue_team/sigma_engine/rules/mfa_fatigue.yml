@@ -1,0 +1,16 @@
+title: MFA Fatigue / Push Bombing
+id: b2000010-0000-4000-a000-vanguard0016
+status: experimental
+description: Detects a rapid burst of repeated MFA push approvals for one identity — push-bombing to coerce a user into approving attacker access.
+author: Vanguard-OOB
+level: high
+logsource:
+  product: vanguard
+  service: identity
+detection:
+  selection:
+    event_type: mfa_fatigue
+  condition: selection
+tags:
+  - attack.credential_access
+  - attack.t1621

@@ -1,0 +1,25 @@
+title: Unsanctioned Remote Access Tool
+id: b2000004-0000-4000-a000-vanguard0010
+status: stable
+description: Detects execution of remote monitoring/management (RMM) tools frequently abused for initial access and hands-on-keyboard control (AnyDesk, ScreenConnect/ConnectWise, TeamViewer, Atera, Splashtop).
+author: Vanguard-OOB
+level: high
+logsource:
+  product: vanguard
+  service: sentry_agent
+detection:
+  selection:
+    event_type: rmm_tool
+  names:
+    details.tool|contains:
+      - 'anydesk'
+      - 'screenconnect'
+      - 'connectwise'
+      - 'teamviewer'
+      - 'atera'
+      - 'splashtop'
+      - 'ngrok'
+  condition: selection and names
+tags:
+  - attack.command_and_control
+  - attack.t1219

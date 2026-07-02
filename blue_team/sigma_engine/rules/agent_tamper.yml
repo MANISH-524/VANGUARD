@@ -1,0 +1,15 @@
+title: Security Agent Silenced (Possible Tamper)
+id: a1f0c4e2-1b3d-4e5f-9a01-vanguard0006
+status: stable
+description: The endpoint sentry agent went silent past its heartbeat grace window, suggesting it was killed.
+author: Vanguard-OOB
+level: high
+logsource:
+  product: vanguard
+detection:
+  selection:
+    event_type: agent_silence
+  condition: selection
+tags:
+  - attack.defense_evasion
+  - attack.t1562.001

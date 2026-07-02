@@ -1,0 +1,18 @@
+title: Web Server Spawning a Shell (Web Shell / RCE)
+id: a1f0c4e2-1b3d-4e5f-9a01-vanguard0003
+status: stable
+description: A web server process spawned a command interpreter, indicating a web shell or RCE.
+author: Vanguard-OOB
+level: high
+logsource:
+  product: vanguard
+detection:
+  selection:
+    event_type: process
+    details.reason: web_server_spawned_shell
+  condition: selection
+tags:
+  - attack.persistence
+  - attack.execution
+  - attack.t1505.003
+  - attack.t1059

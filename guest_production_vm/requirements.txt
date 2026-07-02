@@ -1,0 +1,5 @@
+# Vanguard-OOB :: Sentry Agent — pinned dependencies
+psutil==7.2.2
+# Optional: AES-256-GCM for the telemetry channel. Falls back to stdlib
+# HMAC-AEAD if absent (the agent never requires a third-party crypto lib).
+cryptography>=42.0.0

@@ -1,0 +1,17 @@
+title: Ransomware Cryptographic Spike
+id: a1f0c4e2-1b3d-4e5f-9a01-vanguard0001
+status: stable
+description: Detects a sudden burst of high-entropy writes consistent with mass file encryption (ransomware).
+author: Vanguard-OOB
+level: critical
+logsource:
+  product: vanguard
+  service: sentry_agent
+detection:
+  selection:
+    event_type: crypto_spike
+  condition: selection
+tags:
+  - attack.impact
+  - attack.t1486
+  - attack.t1496

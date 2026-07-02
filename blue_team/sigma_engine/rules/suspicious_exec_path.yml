@@ -1,0 +1,16 @@
+title: Execution From Suspicious Path
+id: a1f0c4e2-1b3d-4e5f-9a01-vanguard0004
+status: stable
+description: A process executed from a temp/scratch directory commonly used by malware droppers.
+author: Vanguard-OOB
+level: high
+logsource:
+  product: vanguard
+detection:
+  selection:
+    event_type: process
+    details.reason: suspicious_exec_path
+  condition: selection
+tags:
+  - attack.defense_evasion
+  - attack.t1036.005
